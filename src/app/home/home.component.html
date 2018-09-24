@@ -1,0 +1,45 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>Добавить запись</p>
+  </div>
+  <div class="col">
+    <p>Список записей ({{ itemCount }}) Количество комментариев: ({{ comcount }})</p>
+  </div>
+
+</div>
+
+<div class="container color-light" [@goals]="goals.length">
+  <div class="col">
+    <p class="sm">Форма для ввода записи</p>
+    <form>
+      <input type="text" class="txt" name="item" placeholder="Введите Вашу запись здесь" [(ngModel)]="goalText" />
+
+      <input type="submit" class="btn" [value]="btnText" (click)="addItem()" />
+
+    </form>
+  </div>
+  <div class="col">
+    <!--  -->
+    <div ng-scroller>
+      <div class="life-container"  *ngFor="let goal of goals, let i = index" [attr.data-n]="i">
+        <p>
+          {{i+1}}) {{ goal }}
+          <br />
+          <span class=del (click)="removeItem(i)">Удалить запись</span>
+        </p>
+
+        <form class="commentarii">
+          <input type="text" class="txtcomment" name="item" placeholder="Ваш комментарий" [(ngModel)]="commentText" />
+          <input type="submit" class="btnComment" [value]="btnCommentText" (click)="addCom()" />
+        </form>
+        <p class="life-container-com" *ngFor="  let comment of comments, let j = index,">
+          {{ comment }}
+          <br />
+          <span class=del (click)="removeCom(j)">Удалить комментарий</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
